@@ -93,7 +93,7 @@ EU TE AMOOOO MEU AMORRR ❤️ você será minha princesaaaa sempreee , FELIZ 20
 
         <div class="spotify-section">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2nMeu6UenVvwUktBCpLMK9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <iframe width="110" height="200" src="https://www.myinstants.com/instant/eu-escolheria-voce-s2-15571/embed/" frameborder="0" scrolling="no"></iframe>
+            <iframe width="100%" height="200" src="https://www.myinstants.com/instant/eu-escolheria-voce-s2-15571/embed/" frameborder="0" scrolling="no"></iframe>
             <p>Você é minha música favorita todos os dias 🎶</p>
         </div>
 
@@ -105,15 +105,27 @@ EU TE AMOOOO MEU AMORRR ❤️ você será minha princesaaaa sempreee , FELIZ 20
 
     <script>
         function updateCounter() {
-            const startDate = new Date('2025-11-08');
+            const startDate = new Date('2025-11-07');
             const now = new Date();
             const diffTime = Math.abs(now - startDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             document.getElementById('days-counter').textContent = diffDays;
         }
 
+        // Atualiza imediatamente e agenda a próxima atualização exatamente à meia-noite local
+        function scheduleNextMidnightUpdate() {
+            const now = new Date();
+            const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+            const delay = nextMidnight - now;
+            // Usa setTimeout para disparar na próxima meia-noite, depois reagenda recursivamente
+            setTimeout(() => {
+                updateCounter();
+                scheduleNextMidnightUpdate();
+            }, delay);
+        }
+
         updateCounter();
-        setInterval(updateCounter, 86400000); // Atualiza todo dia
+        scheduleNextMidnightUpdate();
     </script>
 </body>
 </html>
