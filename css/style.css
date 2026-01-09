@@ -1,0 +1,89 @@
+body { 
+            font-family: 'Circular Std', sans-serif; 
+            background: linear-gradient(to bottom, #302f30, #000000); 
+            color: #ffffff; 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .wrapped-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        h1 { 
+            text-align: center; 
+            color: #ff69b4; 
+        }
+        .foto img { 
+            width: 100%; 
+            max-width: 400px; 
+            display: block; 
+            margin: 20px auto; 
+            border-radius: 15px;    
+        }
+        .subtitle { 
+            text-align: center; 
+            font-size: 1.5em; 
+            color: #ff1493; 
+            margin-bottom: 30px; 
+        }
+
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .message-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(255,105,180,0.2);
+            transition: transform 0.3s;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        .message-card:hover { 
+            transform: translateY(-10px); 
+        }
+        .message-card h3 { 
+            font-size: 1.1em; 
+            line-height: 1.6; 
+            color: #444; 
+        }
+        .message-card .date { 
+            text-align: right; 
+            color: #ff69b4; 
+            font-style: italic; 
+            margin-top: 15px; 
+        }
+
+        .counter-card {
+            background: linear-gradient(to right, #ff69b4, #ff1493);
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 8px 20px rgba(255,20,147,0.3);
+        }
+        .counter-card h2 { 
+            margin: 0 0 20px 0; 
+            font-size: 2em; 
+        }
+        .big-number { 
+            font-size: 4em; 
+            font-weight: bold; 
+            margin: 0; 
+        }
+
+        .spotify-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .final-message {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .final-message h2 { 
+            color: #ff1493; 
+        }
