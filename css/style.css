@@ -115,7 +115,7 @@ body {
             transition: transform 0.3s;
             overflow-y: auto;
             max-height: 600px;
-            width: 1000px;
+            width: 100%;
             max-width: 1000px;
             box-sizing: border-box;
         }
@@ -128,7 +128,7 @@ body {
             padding: 18px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             max-width: 780px;
-            width: 90%;
+            width: 100%;
             box-sizing: border-box;
             margin: 16px auto;
             text-align: center; /* center content inside the card */
@@ -143,7 +143,7 @@ body {
             padding: 18px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             max-width: 780px;
-            width: 90%;
+            width: 100%;
             box-sizing: border-box;
             margin: 16px auto;
             text-align: center; /* center content inside the card */
@@ -155,7 +155,7 @@ body {
         .special-editor {
             margin: 12px auto 28px;
             max-width: 780px;
-            width: 90%;
+            width: 100%;
             text-align: center;
         }
         .special-editor textarea {
@@ -243,12 +243,42 @@ body {
             .message-card2,
             .message-card3 {
                 width: 95%;
-                padding: 16px;
+                padding: 14px;
                 max-width: 1000px;
             }
             .messages-grid {
                 gap: 20px;
             }
+        }
+
+        /* Medium and small screens adjustments */
+        @media (max-width: 768px) {
+            .wrapped-container { padding: 12px; }
+            .site-title { font-size: 1.6rem; }
+            .subtitle { font-size: 1.05rem; }
+            .message-card1, .message-card2, .message-card3, .message-cardd, .message-cardd1 {
+                padding: 14px;
+                max-height: 520px;
+            }
+            .big-number { font-size: 3em; }
+            .spotify-section iframe { height: 260px; }
+            .play-button { width: 56px; height: 56px; font-size: 22px; }
+            .message-cardd, .message-cardd1 { margin: 14px auto; }
+        }
+
+        @media (max-width: 420px) {
+            body { padding: 10px; }
+            .site-title { font-size: 1.4rem; }
+            .subtitle { font-size: 1rem; }
+            .message-card1, .message-card2, .message-card3, .message-cardd, .message-cardd1 {
+                padding: 12px;
+                max-height: 420px;
+            }
+            .big-number { font-size: 2.4em; }
+            .spotify-section iframe { height: 180px; }
+            .play-button { width: 48px; height: 48px; font-size: 20px; }
+            .messages-grid { gap: 16px; }
+            .wrapped-container { padding-top: 6px; }
         }
 
         /* Large screens: increase max-width and spacing */
@@ -337,6 +367,13 @@ body {
                 }
         .instant-iframe{
             align-items: center;
+        }
+        /* Make embedded iframes responsive */
+        .spotify-section iframe {
+            width: 100%;
+            max-width: 100%;
+            height: 352px;
+            border: 0;
         }
         .final-message {
             text-align: center;
