@@ -279,7 +279,7 @@ Mais garota de coração , eu faço de tudo por ti , pois confio em sua alma e c
             audio.addEventListener('ended', function(){ setPlayingState(false); });
         })();
 
-        // Reveal the 'Eu Te Amo' card when touched/clicked (initially blurred)
+        // Reveal the 'Eu Te Amo' card on first click/touch; stays revealed until page reload
         (function(){
             const card = document.getElementById('euteamo-card');
             if(!card) return;
@@ -287,28 +287,21 @@ Mais garota de coração , eu faço de tudo por ti , pois confio em sua alma e c
             card.classList.add('blurred');
             card.setAttribute('aria-hidden','true');
 
-            // toggle reveal state
-            function toggleReveal(){
-                const revealed = card.classList.toggle('revealed');
-                if(revealed){
-                    card.classList.remove('blurred');
-                    card.setAttribute('aria-hidden','false');
-                } else {
-                    card.classList.add('blurred');
-                    card.setAttribute('aria-hidden','true');
-                }
+            function revealOnce(){
+                if(card.classList.contains('revealed')) return;
+                card.classList.remove('blurred');
+                card.classList.add('revealed');
+                card.setAttribute('aria-hidden','false');
+                // no longer interactive
+                card.removeAttribute('role');
+                card.removeAttribute('tabindex');
             }
 
-            // Use pointer events if supported (covers mouse + touch) for snappier interaction
+            // Use pointer events if available (covers mouse + touch). Listen once so it can't be toggled back.
             const downEvent = window.PointerEvent ? 'pointerdown' : (('ontouchstart' in window) ? 'touchstart' : 'click');
-            card.addEventListener(downEvent, function(e){
-                // Prevent duplicate click after touch
-                if(e.type === 'touchstart') e.preventDefault();
-                toggleReveal();
-            }, {passive: false});
-
-            // Keep keyboard support
-            card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleReveal(); } });
+            card.addEventListener(downEvent, function(e){ if(e.type === 'touchstart') e.preventDefault(); revealOnce(); }, {passive:false, once:true});
+            // keyboard support: reveal on first Enter/Space press
+            card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); revealOnce(); } }, {once:true});
         })();
 
         // Tabs navigation with smooth transitions
