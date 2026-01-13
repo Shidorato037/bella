@@ -281,6 +281,33 @@ body {
             .wrapped-container { padding-top: 6px; }
         }
 
+        /* Mobile / touch improvements */
+        button, .tab-btn, .editor-actions button, .play-button {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        /* Ensure tappable controls meet target size on small screens */
+        @media (max-width: 480px) {
+            .tab-btn, .editor-actions button {
+                min-height: 44px;
+                padding: 12px 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .editor-actions { flex-direction: column; gap: 10px; }
+            .tab-buttons { flex-direction: column; gap: 8px; }
+        }
+
+        /* Smooth scrolling for overflowed card areas on touch devices */
+        .message-card1, .message-card2, .message-card3, .message-cardd, .message-cardd1 {
+            -webkit-overflow-scrolling: touch;
+            overflow: auto;
+        }
+
+        /* Make reveal card clearly interactive on touch devices */
+        .message-cardd1 { -webkit-user-select: none; }
+
         /* Large screens: increase max-width and spacing */
         @media (min-width: 1400px) {
             .message-card1,

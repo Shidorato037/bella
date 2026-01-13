@@ -279,14 +279,15 @@ Mais garota de coração , eu faço de tudo por ti , pois confio em sua alma e c
             audio.addEventListener('ended', function(){ setPlayingState(false); });
         })();
 
-        // Reveal the 'Eu Te Amo' card when clicked (initially blurred)
+        // Reveal the 'Eu Te Amo' card when touched/clicked (initially blurred)
         (function(){
             const card = document.getElementById('euteamo-card');
             if(!card) return;
             // ensure initial state
             card.classList.add('blurred');
             card.setAttribute('aria-hidden','true');
-            // click or Enter/Space to toggle reveal
+
+            // toggle reveal state
             function toggleReveal(){
                 const revealed = card.classList.toggle('revealed');
                 if(revealed){
@@ -297,7 +298,16 @@ Mais garota de coração , eu faço de tudo por ti , pois confio em sua alma e c
                     card.setAttribute('aria-hidden','true');
                 }
             }
-            card.addEventListener('click', toggleReveal);
+
+            // Use pointer events if supported (covers mouse + touch) for snappier interaction
+            const downEvent = window.PointerEvent ? 'pointerdown' : (('ontouchstart' in window) ? 'touchstart' : 'click');
+            card.addEventListener(downEvent, function(e){
+                // Prevent duplicate click after touch
+                if(e.type === 'touchstart') e.preventDefault();
+                toggleReveal();
+            }, {passive: false});
+
+            // Keep keyboard support
             card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleReveal(); } });
         })();
 
